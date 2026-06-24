@@ -776,4 +776,48 @@ const AIInterviewSystem = () => {
   );
 };
 
-export default AIInterviewSystem;
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error("ErrorBoundary caught an error", error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ padding: 40, color: 'white', backgroundColor: '#990000', minHeight: '100vh', fontFamily: 'monospace' }}>
+          <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Application Crashed!</h2>
+          <p style={{ marginBottom: '2rem' }}>Please take a screenshot of this error and send it to the AI:</p>
+          <pre style={{ whiteSpace: 'pre-wrap', backgroundColor: 'rgba(0,0,0,0.3)', padding: 20, borderRadius: 8 }}>
+            {this.state.error && this.state.error.toString()}
+            {'\n\n'}
+            {this.state.error && this.state.error.stack}
+          </pre>
+          <button 
+            onClick={() => window.location.reload()} 
+            style={{ padding: '10px 20px', marginTop: 20, color: 'black', backgroundColor: 'white', border: 'none', borderRadius: 4, cursor: 'pointer' }}
+          >
+            Reload Page
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
+export default function AppWithErrorBoundary(props) {
+  return (
+    <ErrorBoundary>
+      <AIInterviewSystem {...props} />
+    </ErrorBoundary>
+  );
+}
