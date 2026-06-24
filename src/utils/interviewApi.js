@@ -1,8 +1,10 @@
+const API_BASE_URL = process.env.REACT_APP_API_URL || "";
+
 export async function requestJson(url, options = {}) {
   let response;
 
   try {
-    response = await fetch(url, options);
+    response = await fetch(`${API_BASE_URL}${url}`, options);
   } catch (error) {
     throw new Error("Could not reach the API server. Restart the frontend and backend, then try again.");
   }
