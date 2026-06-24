@@ -106,14 +106,22 @@ export const SummaryRow = ({ label, value }) => (
   </div>
 );
 
+const extractString = (item) => {
+  if (typeof item === "string") return item;
+  if (item && typeof item === "object") {
+    return item.title || item.name || item.description || item.summary || JSON.stringify(item);
+  }
+  return String(item);
+};
+
 export const TagList = ({ title, items, emptyLabel }) => (
   <div>
     {title ? <h4 className="text-sm font-semibold text-slate-700 dark:text-slate-200">{title}</h4> : null}
     {items?.length ? (
       <div className="mt-3 flex flex-wrap gap-2">
-        {items.map((item) => (
-          <span key={item} className="rounded-full bg-slate-900 px-3 py-1 text-xs font-semibold text-white dark:bg-slate-100 dark:text-slate-900">
-            {item}
+        {items.map((item, index) => (
+          <span key={`tag-${index}`} className="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+            {extractString(item)}
           </span>
         ))}
       </div>
@@ -128,11 +136,19 @@ export const SimpleList = ({ title, items, emptyLabel }) => (
     {title ? <h4 className="text-sm font-semibold text-slate-700 dark:text-slate-200">{title}</h4> : null}
     {items?.length ? (
       <ul className="mt-3 space-y-2">
-        {items.map((item, index) => (
-          <li key={`${item}-${index}`} className="rounded-2xl bg-white px-4 py-3 text-sm text-slate-700 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:text-slate-200 dark:ring-slate-800">
-            {item}
-          </li>
-        ))}
+        {items.map((item, index) => {
+          const content = extractString(item);
+          return (
+            <li key={`list-item-${index}`} className="rounded-2xl bg-white px-4 py-3 text-sm text-slate-700 shadow-sm ring-1 ring-slate-200 dark:bg-slate-900 dark:text-slate-200 dark:ring-slate-800">
+              {item && typeof item === "object" && item.title && item.description ? (
+                <div>
+                  <div className="font-semibold text-slate-900 dark:text-slate-100">{item.title}</div>
+                  <div className="mt-1 text-slate-600 dark:text-slate-400">{item.description}</div>
+                </div>
+              ) : content}
+            </li>
+          );
+        })}
       </ul>
     ) : (
       <p className="mt-3 text-sm text-slate-500 dark:text-slate-400">{emptyLabel}</p>
