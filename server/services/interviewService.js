@@ -660,21 +660,26 @@ ${rawText.slice(0, 9000)}`,
     if (!json) return baseProfile;
     const parsed = JSON.parse(json);
 
+    const flattenArray = (arr, fallback = []) => {
+      if (!Array.isArray(arr) || !arr.length) return fallback;
+      return arr.map(item => {
+        if (typeof item === 'string') return item;
+        if (item && typeof item === 'object') {
+          return Object.values(item).filter(v => typeof v === 'string').join(' - ');
+        }
+        return String(item);
+      }).filter(Boolean);
+    };
+
     return profileSnapshot({
       ...baseProfile,
       ...parsed,
-      education: Array.isArray(parsed.education) && parsed.education.length ? parsed.education : baseProfile.education,
-      experience: Array.isArray(parsed.experience) && parsed.experience.length ? parsed.experience : baseProfile.experience,
-      skills: Array.isArray(parsed.skills) && parsed.skills.length ? parsed.skills : baseProfile.skills,
-      projects: Array.isArray(parsed.projects) && parsed.projects.length ? parsed.projects : baseProfile.projects,
-      certifications:
-        Array.isArray(parsed.certifications) && parsed.certifications.length
-          ? parsed.certifications
-          : baseProfile.certifications,
-      achievements:
-        Array.isArray(parsed.achievements) && parsed.achievements.length
-          ? parsed.achievements
-          : baseProfile.achievements,
+      education: flattenArray(parsed.education, baseProfile.education),
+      experience: flattenArray(parsed.experience, baseProfile.experience),
+      skills: flattenArray(parsed.skills, baseProfile.skills),
+      projects: flattenArray(parsed.projects, baseProfile.projects),
+      certifications: flattenArray(parsed.certifications, baseProfile.certifications),
+      achievements: flattenArray(parsed.achievements, baseProfile.achievements),
     });
   } catch (error) {
     return baseProfile;
