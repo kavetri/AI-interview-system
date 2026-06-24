@@ -1,70 +1,74 @@
-# Getting Started with Create React App
+# 🚀 AI Interview System (PERFEXA)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React](https://img.shields.io/badge/React-18.2.0-blue?style=for-the-badge&logo=react)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.3.5-38B2AC?style=for-the-badge&logo=tailwind-css)
+![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=nodedotjs)
+![MediaPipe](https://img.shields.io/badge/MediaPipe-Vision-FF8C00?style=for-the-badge)
 
-## Available Scripts
+PERFEXA is an advanced AI-powered Interview System designed to help candidates prepare for their dream jobs. By analyzing resumes, generating tailored questions, and evaluating responses, the system acts as a personalized interview coach. It also includes an ATS (Applicant Tracking System) checker and gamified progression to keep users engaged.
 
-In the project directory, you can run:
+## ✨ Features
 
-### `npm start`
+- **📄 Smart Resume Parsing:** Upload your resume (PDF/Word) to automatically extract your skills, experience, and profile.
+- **🎯 Dynamic Interview Generation:** Choose between HR, Technical, or Combined interviews. The AI generates contextual questions based on your unique profile.
+- **🤖 AI Evaluation & Feedback:** Get real-time, comprehensive feedback and scoring on your answers.
+- **✅ ATS Resume Checker:** Compare your resume against a specific job description to get an ATS compatibility score and actionable improvement tips.
+- **🎮 Gamified Learning:** Earn XP, level up your rank, and complete daily challenges to maintain a streak and improve consistently.
+- **🎥 MediaPipe Vision Integration:** Support for advanced computer vision tasks during interviews (e.g., posture and expression analysis).
+- **🌓 Dark/Light Mode:** A beautifully designed interface with full dark mode support using Tailwind CSS.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🛠️ Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+**Frontend:**
+- React 18
+- Tailwind CSS (with autoprefixer & postcss)
+- Lucide React (Icons)
+- MediaPipe Vision Tasks
 
-### `npm test`
+**Backend:**
+- Node.js & Express.js
+- Multer (File Uploads)
+- PDF-Parse & Mammoth (Document parsing)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🚀 Getting Started (Local Development)
 
-### `npm run build`
+Follow these steps to set up the project locally. (Note: The frontend and backend are currently under development and are not yet deployed to production.)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 1. Install dependencies
+Install the required packages for both frontend and backend.
+```bash
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. Run the application
+You can start both the React frontend and the Express backend simultaneously using concurrently:
+```bash
+npm run dev
+```
 
-### `npm run eject`
+## 📂 Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```text
+ai-interview-system/
+├── public/             # Static assets
+├── server/             # Express.js backend
+│   ├── index.js        # Server entry point
+│   └── services/       # AI & parsing logic
+├── src/                # React frontend
+│   ├── components/     # Reusable UI components
+│   ├── utils/          # Gamification & storage logic
+│   ├── App.js          # Main application routing
+│   └── index.css       # Tailwind CSS entry
+├── package.json        # Dependencies & scripts
+└── tailwind.config.js  # Tailwind configuration
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 🔐 License
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+This is a totally private project. Currently, it does not have any formal open-source license attached to it.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---
+*Best of luck on your next interview! 🍀*
